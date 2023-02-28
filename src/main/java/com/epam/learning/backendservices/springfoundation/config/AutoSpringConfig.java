@@ -22,7 +22,7 @@ public class AutoSpringConfig {
     }
 
     @Bean
-//    @ConditionalOnBean(name = "getDataSource")
+    @ConditionalOnBean(name = "getDataSource")
     @ConditionalOnMissingBean
     public DataSource getAlternativeDataSource() {
         DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
