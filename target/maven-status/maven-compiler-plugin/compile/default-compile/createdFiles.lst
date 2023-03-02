@@ -1,0 +1,7 @@
+com\epam\learning\backendservices\springfoundation\config\MySpringConfig.class
+com\epam\learning\backendservices\springfoundation\config\AutoSpringConfig.class
+com\epam\learning\backendservices\springfoundation\models\User.class
+com\epam\learning\backendservices\springfoundation\data\UserRepository.class
+com\epam\learning\backendservices\springfoundation\SpringFoundationApplication.class
+com\epam\learning\backendservices\springfoundation\actuatorendpoints\StateActuatorEndpoint.class
+com\epam\learning\backendservices\springfoundation\config\SecurityConfig.class
