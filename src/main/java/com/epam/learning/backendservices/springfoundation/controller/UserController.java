@@ -4,10 +4,7 @@ import com.epam.learning.backendservices.springfoundation.dao.UserDAO;
 import com.epam.learning.backendservices.springfoundation.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -23,7 +20,7 @@ public class UserController {
     }
 
     @GetMapping("/new")
-    public String create(@PathVariable("name") String name, @PathVariable("email") String email) {
+    public String create(@RequestParam("name") String name, @RequestParam("email") String email) {
         userDAO.create(name, email);
         return "Created";
     }
@@ -35,7 +32,7 @@ public class UserController {
     }
 
     @GetMapping("/update/{id}")
-    public String update(@PathVariable("id") UUID id, @PathVariable("name") String name, @PathVariable("email") String email) {
+    public String update(@PathVariable("id") UUID id, @RequestParam("name") String name, @RequestParam("email") String email) {
         userDAO.update(id, name, email);
         return "Updated";
     }
