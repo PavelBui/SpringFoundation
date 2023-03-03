@@ -10,26 +10,14 @@ import javax.sql.DataSource;
 public class AutoSpringConfig {
 
     @Bean
-//    @Profile("DEV")
     public DataSource getDataSource() {
         DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("org.h2.Driver");
         dataSourceBuilder.url("jdbc:h2:mem:dev");
-        dataSourceBuilder.username("dev");
+        dataSourceBuilder.username("sa");
         dataSourceBuilder.password("");
         return dataSourceBuilder.build();
     }
-
-//    @Bean
-//    @Profile("QA")
-//    public DataSource getQaDataSource() {
-//        DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
-//        dataSourceBuilder.driverClassName("org.h2.Driver");
-//        dataSourceBuilder.url("jdbc:h2:mem:qa");
-//        dataSourceBuilder.username("qa");
-//        dataSourceBuilder.password("");
-//        return dataSourceBuilder.build();
-//    }
 
 }
 
