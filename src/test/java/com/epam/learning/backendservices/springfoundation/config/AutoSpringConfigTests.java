@@ -1,6 +1,6 @@
 package com.epam.learning.backendservices.springfoundation.config;
 
-import com.epam.learning.backendservices.springfoundation.data.UserRepository;
+import com.epam.learning.backendservices.springfoundation.dao.UserRepository;
 import com.epam.learning.backendservices.springfoundation.models.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigurations;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.sql.DataSource;
@@ -18,6 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
+@ActiveProfiles("DEV")
 public class AutoSpringConfigTests {
 
     @Autowired
