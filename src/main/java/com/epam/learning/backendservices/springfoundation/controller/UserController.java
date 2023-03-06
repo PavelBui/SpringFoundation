@@ -1,46 +1,40 @@
 package com.epam.learning.backendservices.springfoundation.controller;
 
-import com.epam.learning.backendservices.springfoundation.dao.UserDAO;
 import com.epam.learning.backendservices.springfoundation.models.User;
+import com.epam.learning.backendservices.springfoundation.service.UserServiceImpl;
+import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@Component
-@RequestMapping("/user")
-public class UserController {
-
-    private UserDAO userDAO;
+@RestController
+public class UserController implements UserApi {
 
     @Autowired
-    public UserController(UserDAO userDAO) {
-        this.userDAO = userDAO;
+    private UserServiceImpl userServiceImpl;
+
+    public ResponseEntity<String> create(@RequestParam("name") String name, @RequestParam("email") String email) {
+        userServiceImpl.create(new User(name, email));
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("/new")
-    public String create(@RequestParam("name") String name, @RequestParam("email") String email) {
-        userDAO.create(name, email);
-        return "Created";
+    public ResponseEntity<String> read(UUID id) {
+        userServiceImpl.get(id);
+        return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/{id}")
-    public String read(@PathVariable("id") UUID id) {
-        User user = userDAO.get(id);
-        return "Name: " + user.getName() + "email: " + user.getEmail();
+    public ResponseEntity<String> update(@PathVariable @NotNull UUID id, @RequestParam("name") String name, @RequestParam("email") String email) {
+        userServiceImpl.update(id, name, email);
+        return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/update/{id}")
-    public String update(@PathVariable("id") UUID id, @RequestParam("name") String name, @RequestParam("email") String email) {
-        userDAO.update(id, name, email);
-        return "Updated";
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable("id") UUID id) {
-        userDAO.delete(id);
-        return "Deleted";
+    public ResponseEntity<String> delete(UUID id) {
+        userServiceImpl.delete(id);
+        return ResponseEntity.ok().build();
     }
 
 }
