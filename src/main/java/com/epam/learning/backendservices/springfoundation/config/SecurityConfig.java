@@ -13,9 +13,13 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.authorizeRequests()
-                .antMatchers("/actuator/info/**", "/actuator/health/**", "/actuator/state/**", "/user/**").hasRole("DEVUSER")
-                .and().build();
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/actuator/info", "/actuator/health").permitAll()
+                .antMatchers("/actuator/state", "/user**").hasRole("DEVUSER")
+                .anyRequest().authenticated();
+        http.httpBasic();
+        return http.build();
     }
 
 }
