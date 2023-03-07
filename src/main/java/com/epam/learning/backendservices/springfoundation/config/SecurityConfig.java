@@ -1,5 +1,6 @@
 package com.epam.learning.backendservices.springfoundation.config;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
+@EnableAutoConfiguration
 @EnableWebSecurity
 public class SecurityConfig {
 
